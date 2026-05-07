@@ -6,7 +6,7 @@ function Home() {
     return (
         <div className={styles.page}>
             <header className={styles.header}>
-                <div className={styles.logo}>🚄 УкрЗалізниця</div>
+                <div className={styles.logo}>УкрЗалізниця</div>
                 <p className={styles.subtitle}>Онлайн-бронювання залізничних квитків</p>
             </header>
             <main className={styles.main}>

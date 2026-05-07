@@ -19,7 +19,7 @@ function TrainList({ trains }) {
             <div className={styles.searchBar}>
                 <input
                     type="text"
-                    placeholder="🔍 Пошук за номером, містом відправлення або прибуття..."
+                    placeholder="Пошук за номером, містом відправлення або прибуття..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     className={styles.searchInput}
@@ -28,7 +28,7 @@ function TrainList({ trains }) {
 
             {filtered.length === 0 ? (
                 <div className={styles.noResults}>
-                    <p>🚫 Рейсів не знайдено. Спробуйте інший запит.</p>
+                    <p>Рейсів не знайдено. Спробуйте інший запит.</p>
                 </div>
             ) : (
                 <div className={styles.grid}>

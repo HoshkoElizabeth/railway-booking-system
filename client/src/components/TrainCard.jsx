@@ -27,7 +27,7 @@ function TrainCard({ train }) {
     return (
         <div className={styles.card}>
             <div className={styles.header}>
-                <span className={styles.trainNumber}>🚂 Потяг №{train.number}</span>
+                <span className={styles.trainNumber}>Потяг №{train.number}</span>
                 <span className={styles.seats}>{availableSeats} місць вільно</span>
             </div>
 
