@@ -1,15 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import "./App.css";
+import Booking from "./pages/Booking";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/booking/:trainId" element={<div>Сторінка бронювання (в розробці)</div>} />
+        <Route path="/booking/:trainId" element={<Booking />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
