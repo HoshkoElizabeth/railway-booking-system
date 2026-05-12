@@ -1,0 +1,87 @@
+.page {
+    min-height: 100vh;
+    background: #f5f7fa;
+}
+
+.header {
+    background: #1565c0;
+    color: white;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.back {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.back:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.title {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.sub {
+    margin: 0;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 28px;
+    align-items: start;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.right {
+    position: sticky;
+    top: 20px;
+}
+
+.notFound {
+    text-align: center;
+    padding: 60px;
+    color: #c62828;
+}
+
+.notFound button {
+    margin-top: 16px;
+    padding: 10px 20px;
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .main {
+        grid-template-columns: 1fr;
+    }
+
+    .right {
+        position: static;
+    }
+}
