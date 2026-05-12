@@ -6,6 +6,7 @@ import SeatMap from "../components/SeatMap";
 import BookingForm from "../components/BookingForm";
 import { BookingService } from "../services/BookingService";
 import styles from "./Booking.module.css";
+import { ApiService } from "../services/ApiService";
 
 function Booking() {
     const { trainId } = useParams();
@@ -16,9 +17,11 @@ function Booking() {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [extraBooked, setExtraBooked] = useState([]);
 
+    // useEffect — брати заброньовані місця з API
     useEffect(() => {
         if (selectedWagon) {
-            setExtraBooked(BookingService.getBookedSeats(trainId, selectedWagon.id));
+            ApiService.getBookedSeats(trainId, selectedWagon.id)
+                .then(setExtraBooked);
             setSelectedSeats([]);
         }
     }, [selectedWagon, trainId]);
@@ -37,10 +40,22 @@ function Booking() {
             prev.includes(seat) ? prev.filter((s) => s !== seat) : [...prev, seat]
         );
 
-    const handleBooking = (formData) => {
-        BookingService.save({ trainId, wagonId: selectedWagon.id, seats: selectedSeats, passenger: formData });
+    // handleBooking — зберігати через API
+    const handleBooking = async (formData) => {
+        const result = await ApiService.createBooking({
+            trainId,
+            wagonId: selectedWagon.id,
+            seats: selectedSeats,
+            passenger: formData,
+        });
+
+        if (result.error) {
+            alert(`Помилка: ${result.error}`);
+            return;
+        }
+
         setExtraBooked((prev) => [...prev, ...selectedSeats]);
-        alert(`✅ Місця ${[...selectedSeats].sort((a, b) => a - b).join(", ")} у вагоні ${selectedWagon.number} заброньовано!`);
+        alert(`Місця ${[...selectedSeats].sort((a, b) => a - b).join(", ")} у вагоні ${selectedWagon.number} заброньовано!`);
         setSelectedSeats([]);
     };
 
