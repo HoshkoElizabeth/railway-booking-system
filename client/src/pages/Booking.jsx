@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { trains } from "../data/trains";
 import WagonSelector from "../components/WagonSelector";
 import SeatMap from "../components/SeatMap";
 import BookingForm from "../components/BookingForm";
@@ -11,11 +10,27 @@ import { ApiService } from "../services/ApiService";
 function Booking() {
     const { trainId } = useParams();
     const navigate = useNavigate();
-    const train = trains.find((t) => t.id === trainId);
-
+    
+    const [train, setTrain] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [selectedWagon, setSelectedWagon] = useState(null);
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [extraBooked, setExtraBooked] = useState([]);
+
+    // Завантаження даних про рейс
+    useEffect(() => {
+        setLoading(true);
+        ApiService.getTrain(trainId)
+            .then((data) => {
+                if (data.error) {
+                    setTrain(null);
+                } else {
+                    setTrain(data);
+                }
+            })
+            .catch(() => setTrain(null))
+            .finally(() => setLoading(false));
+    }, [trainId]);
 
     // useEffect — брати заброньовані місця з API
     useEffect(() => {
@@ -25,6 +40,10 @@ function Booking() {
             setSelectedSeats([]);
         }
     }, [selectedWagon, trainId]);
+
+    if (loading) {
+        return <div className={styles.page}><p style={{ padding: "40px", textAlign: "center" }}>Завантаження...</p></div>;
+    }
 
     if (!train) {
         return (
