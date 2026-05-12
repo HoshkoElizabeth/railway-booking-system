@@ -1,21 +1,15 @@
+import styles from "./WagonSelector.module.css";
+
 function WagonSelector({ wagons, selectedWagon, onSelect }) {
     return (
-        <div>
-            <h3>Оберіть вагон:</h3>
-            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+        <div className={styles.container}>
+            <h3 className={styles.title}>Оберіть вагон:</h3>
+            <div className={styles.list}>
                 {wagons.map((wagon) => (
                     <button
                         key={wagon.id}
                         onClick={() => onSelect(wagon)}
-                        style={{
-                            padding: "10px 16px",
-                            border: "2px solid",
-                            borderColor: selectedWagon?.id === wagon.id ? "#1565c0" : "#ccc",
-                            borderRadius: "8px",
-                            background: selectedWagon?.id === wagon.id ? "#1565c0" : "white",
-                            color: selectedWagon?.id === wagon.id ? "white" : "#333",
-                            cursor: "pointer",
-                        }}
+                        className={`${styles.btn} ${selectedWagon?.id === wagon.id ? styles.active : ""}`}
                     >
                         Вагон {wagon.number} · {wagon.type} · {wagon.totalSeats - wagon.bookedSeats.length} місць
                     </button>

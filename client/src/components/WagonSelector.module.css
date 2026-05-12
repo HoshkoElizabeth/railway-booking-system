@@ -1,0 +1,38 @@
+.container {
+    margin-bottom: 24px;
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #1a1a2e;
+}
+
+.list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    border-color: #1565c0;
+    background: #e3f2fd;
+}
+
+.active {
+    border-color: #1565c0;
+    background: #1565c0;
+    color: white;
+}
